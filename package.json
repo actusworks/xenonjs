@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
-  "module": "./src/index.js",
   "type": "module",
   "exports": {
     ".": "./src/index.js",
@@ -34,6 +33,11 @@
   "author": "Stelios Ignatiadis",
   "files": ["src", "README.md", "LICENSE"],
   "license": "MIT",
+  "homepage": "https://github.com/actusworks/xenonjs#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/actusworks/xenonjs"
+  },
   "devDependencies": {
     "vite": "^8.0.3"
   }
