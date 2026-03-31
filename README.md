@@ -7,7 +7,10 @@
 
 # XenonJS
 
-A lightweight, zero-dependency DOM utility library for modern vanilla JavaScript projects. XenonJS provides an expressive chainable API for element selection, DOM manipulation, event handling, and more — without the overhead of a full framework.
+A tiny, event-driven DOM toolkit for modern JavaScript — built for clean chaining, smart event handling, and zero overhead.
+
+No framework. No dependencies. Just fast, expressive DOM control.
+DOM manipulation, event handling, and more — without the overhead of a full framework.
 
 ## Why XenonJS?
 
@@ -18,6 +21,23 @@ A lightweight, zero-dependency DOM utility library for modern vanilla JavaScript
 - **Static methods** — use `X.hide('.ad')` for quick one-liners without chaining
 - **Built-in context menus** — custom right-click menus out of the box
 - **Modern** — ES2020+, built with Vite
+
+
+## Why not just use vanilla JS?
+
+Because XenonJS gives you:
+
+- **Cleaner chaining**
+```js
+X('.card').addClass('active').css('opacity', '1')
+```
+vs
+```js
+document.querySelectorAll('.card').forEach(el => {
+  el.classList.add('active')
+  el.style.opacity = '1'
+})
+```
 
 ## Installation
 
@@ -42,6 +62,55 @@ X('.list').on('click', '.item', (e, matched) => {
 X.hide('.banner');
 X.text('.title', 'Hello, Xenon!');
 ```
+
+
+
+## Smart Event System (no duplicates, no leaks)
+
+XenonJS automatically prevents duplicate listeners and tracks them internally.
+
+```js
+X('.btn').on('click', handler)
+X('.btn').on('click', handler) // ← ignored, no duplicate
+```
+
+You also get:
+- Delegation built-in
+- Easy cleanup with .off()
+- Memory-safe via WeakMap
+
+
+## Built-in Context Menus (no plugin needed)
+
+Create fully custom right-click menus in seconds:
+
+```js
+X('.canvas').context([
+  { text: 'Copy', action: copy },
+  { text: 'Paste', action: paste }
+])
+```
+
+- Menus auto-position to stay within the viewport.
+- Close on outside click, <kbd>Esc</kbd>, window blur, or resize.
+- Supports `svg`, `icon` (image URL), and `action` (function or string stored as `data-context-action`).
+
+
+
+## Example: Interactive List
+
+```js
+X('.list')
+  .on('click', '.item', (e, el) => {
+    X(el).toggleClass('active')
+  })
+
+X('.add-btn').on('click', () => {
+  X('#list').append('<li class="item">New item</li>')
+})
+```
+
+
 
 ## API Reference
 
@@ -230,7 +299,7 @@ X.toggle('.sidebar');
 XenonJS ships with an optional event bus plugin for pub/sub communication between decoupled parts of your app.
 
 ```javascript
-import 'xenonjs/src/bus.js'; // attaches X.bus automatically
+import 'xenonjs/bus'; // attaches X.bus automatically
 
 // Subscribe
 const unsub = X.bus.on('user:login', (data) => console.log(data.name));

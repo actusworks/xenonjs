@@ -1,7 +1,7 @@
 {
   "name": "xenonjs",
   "version": "1.0.1",
-  "description": "",
+  "description": "Lightweight event-driven DOM utility library with modular architecture",
   "main": "./src/index.js",
   "type": "module",
   "exports": {
@@ -38,9 +38,9 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/actusworks/xenonjs#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/actusworks/xenonjs"
+  "repository": "github:actusworks/xenonjs",
+  "bugs": {
+    "url": "https://github.com/actusworks/xenonjs/issues"
   },
   "devDependencies": {
     "vite": "^8.0.3"
