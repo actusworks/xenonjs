@@ -1,0 +1,40 @@
+{
+  "name": "xenonjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./bus": "./src/bus.js"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [
+    "dom",
+    "dom-utils",
+    "dom-manipulation",
+    "events",
+    "event-bus",
+    "javascript",
+    "frontend",
+    "utility",
+    "library",
+    "lightweight",
+    "selector",
+    "wrapper",
+    "jquery-like",
+    "context-menu",
+    "ui",
+    "vanilla-js"
+  ],
+  "author": "Stelios Ignatiadis",
+  "files": ["src", "README.md", "LICENSE"],
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^8.0.3"
+  }
+}
