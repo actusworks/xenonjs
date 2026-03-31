@@ -3,7 +3,6 @@ import contextMenu		from './services/context'
 // ════════════════════════════════════════════════════
 
 
-console.log('Xenon JS loaded');
 
 
 

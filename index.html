@@ -7,61 +7,15 @@
 </head>
 <body data-screen="home">
 
-	
-	<div id="app">
-
-
-		<header class="header">
-			<div class="header-menu"></div>
-			<h1>Xenon JS</h1>
-			<div class="header-actions">
-				<div class="header-action" alt="action1">Action1</div>
-				<div class="header-action" alt="action2">Action2</div>
-				<div class="header-action" alt="action3">Action3</div>
-			</div>
-		</header>
-
-		<div class="app-tools">
-			<select id="accountSelector" class="account-selector"></select>
-			<div class="search-bar">
-				<input class="search-emails input" type="text" placeholder="Search emails..." id="emailSearchInput" />
-				<button class="btn search-btn" id="emailSearchBtn">search</button>
-			</div>
-			<button id="new-email" alt="new">New</button>
-		</div>
-
+	<div id="app"></div>
 	
 	<script src="src/index.js" type="module"></script>
 	<script type="module">
 		import X from '/src/index.js';
-		let el1 = document.querySelector('.app-tools');
-		let el2 = document.querySelector('.header-menu');
-		let els = document.querySelectorAll('.header-action');
-		let els2 = '.header-action';
-		let els3 = '.header-action';
 
-		X('.header-action').i(1).addClass('active')
+		X('#app').html('<h1>Welcome to Xenon JS</h1><p>This is a simple example of using Xenon JS to manipulate the DOM.</p>');
 
-		console.log('-----', X('.header-action').length());
-		const items = X('.header-action');
-		console.log('item', items);
-		console.log('item', items.i(0).get()); // now items changed
-		console.log('item', items);
-
-		X('h1').context([
-			{ name: 'Option 1', action: () => console.log('Option 1 selected') },
-			{ name: 'Option 2', action: () => console.log('Option 2 selected') },
-			{ name: 'Option 3', action: () => console.log('Option 3 selected') }
-		])
-		
 	</script>
-
-
-	<style>
-		.active {
-			background-color: hsl(46, 96%, 82%);
-		}
-	</style>
 
 </body>
 </html>
