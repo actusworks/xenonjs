@@ -9,6 +9,7 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, 'src/index.js'),
         bus: resolve(__dirname, 'src/bus.js'),
+        all: resolve(__dirname, 'src/all.js'),
       },
       formats: ['es'],
     },
