@@ -41,8 +41,47 @@ document.querySelectorAll('.card').forEach(el => {
 
 ## Installation
 
+### npm
+
 ```bash
 npm install xenonjs
+```
+
+### CDN / `<script>` tag (unpkg)
+
+Drop in a single `<script>` tag — no bundler required. The library is exposed on `window.XenonJS` and the default export (`X`) is available as `window.XenonJS.default`.
+
+```html
+<!-- Latest version -->
+<script src="https://unpkg.com/xenonjs"></script>
+
+<!-- Pinned version -->
+<script src="https://unpkg.com/xenonjs@1.0.4/dist/index.iife.js"></script>
+
+<script>
+  const X = XenonJS.default;
+
+  X('.card').addClass('active').css('opacity', '1');
+  X.hide('.banner');
+</script>
+```
+
+### ES module in the browser (no bundler)
+
+```html
+<script type="module">
+  import X from 'https://unpkg.com/xenonjs/dist/index.js';
+
+  X('.card').addClass('active');
+</script>
+```
+
+### ES module with a bundler (Vite, webpack, Rollup…)
+
+```js
+import X from 'xenonjs';          // core
+import 'xenonjs/bus';             // attach X.bus
+import X from 'xenonjs/all';      // core + bus in one import
 ```
 
 ## Quick Start
@@ -330,7 +369,8 @@ xenonjs/
 │       ├── context.js         # Context menu system
 │       └── util.js            # Shared helpers (class normalization, event keys)
 ├── index.html                 # Dev playground
-├── vite.config.js             # Vite build config (ES module library output)
+├── dist/                      # Built outputs (ES, IIFE, UMD for each entry)
+├── vite.config.js             # Vite build config (ES, IIFE, UMD library output)
 ├── package.json
 └── examples.md                # Extended usage examples
 ```
@@ -348,7 +388,13 @@ npm run dev
 npm run build
 ```
 
-The build outputs a single ES module at `dist/index.js`.
+The build produces three formats for each entry point (`index`, `bus`, `all`):
+
+| File | Format | Use case |
+|------|--------|----------|
+| `dist/index.js` | ES module | Bundlers, `<script type="module">` |
+| `dist/index.iife.js` | IIFE | `<script>` tag, unpkg CDN |
+| `dist/index.umd.js` | UMD | CommonJS / AMD environments |
 
 ## License
 

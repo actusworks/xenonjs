@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
+// Build 1 of 2: ES modules — multiple entry points (index, bus, all)
 export default defineConfig({
   build: {
     outDir: 'dist',
@@ -12,12 +13,12 @@ export default defineConfig({
         all: resolve(__dirname, 'src/all.js'),
       },
       formats: ['es'],
+      fileName: (_format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        manualChunks: undefined
+        chunkFileNames: 'chunks/[name].js',
+        manualChunks: undefined,
       },
     },
     target: 'es2020',
