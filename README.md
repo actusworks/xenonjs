@@ -52,27 +52,44 @@ npm install xenonjs
 Drop in a single `<script>` tag — no bundler required. The library is exposed on `window.XenonJS` and the default export (`X`) is available as `window.XenonJS.default`.
 
 ```html
-<!-- Latest version -->
-<script src="https://unpkg.com/xenonjs"></script>
-
-<!-- Pinned version -->
-<script src="https://unpkg.com/xenonjs@1.0.4/dist/index.iife.js"></script>
-
+<!-- Core only (no bus) -->
+<script src="https://unpkg.com/xenonjs/dist/index.iife.js"></script>
 <script>
-  const X = XenonJS.default;
-
+  const X = XenonJS.use;
   X('.card').addClass('active').css('opacity', '1');
   X.hide('.banner');
+</script>
+
+<!-- core + bus (X and X.bus both available) -->
+<script src="https://unpkg.com/xenonjs/dist/all.iife.js"></script>
+<script>
+  const X = XenonJS.use;
+  X('.card').addClass('active');
+  X.bus.on('user:login', (data) => console.log(data));
+  X.bus.emit('user:login', { name: 'Alice' });
 </script>
 ```
 
 ### ES module in the browser (no bundler)
 
 ```html
+<!-- Core only -->
 <script type="module">
   import X from 'https://unpkg.com/xenonjs/dist/index.js';
-
   X('.card').addClass('active');
+</script>
+
+<!-- Core + bus separately -->
+<script type="module">
+  import X from 'https://unpkg.com/xenonjs/dist/index.js';
+  import 'https://unpkg.com/xenonjs/dist/bus.js'; // attaches X.bus
+  X.bus.on('ready', () => console.log('ready'));
+</script>
+
+<!-- Core + bus in one import -->
+<script type="module">
+  import X from 'https://unpkg.com/xenonjs/dist/all.js';
+  X.bus.on('ready', () => console.log('ready'));
 </script>
 ```
 

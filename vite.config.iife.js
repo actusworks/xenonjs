@@ -8,7 +8,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: false, // preserve the ES build from build 1
     lib: {
-      entry: resolve(__dirname, 'src/index.js'),
+      entry: resolve(__dirname, 'src/iife-entry.js'),
       name: 'XenonJS',
       formats: ['iife', 'umd'],
       fileName: (format) => `index.${format}.js`,
